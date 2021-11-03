@@ -1,0 +1,9 @@
+	<meta charset=UTF-8>
+	<div class="navbar-collapse collapse order-3 dual-collapse2">
+		<ul class="navbar-nav ml-auto">
+		<li th:if="${session.user == null}" class="nav-item">
+			<a class="nav-link" href="/login"> LOGIN </a>
+		</li>
+		<li th:if="${session.user == null}" class="nav-item">
+			<a class="nav-link" href="/registro"> REGISTRARSE </a>
+		</li>

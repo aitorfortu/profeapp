@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Rol {
+public class Curso {
 
 	// Atributos
 	// ===========================================================================
@@ -20,20 +20,25 @@ public class Rol {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@Column(unique = true)
 	private String nombre;
-	@OneToMany(mappedBy = "rol", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	private List<Entidad> entidades;
+
+	@OneToMany(mappedBy = "curso", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private List<Alumno> alumnos;
 
 	// Constructores
 	// ===========================================================================
 
-	public Rol() {
+	public Curso() {
+
 	}
 
-	public Rol(final String nombre) {
+	public Curso(final Long id, final String nombre, final List<Alumno> alumnos) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
+		this.alumnos = alumnos;
 	}
 
 	// Getters y Setters
@@ -55,12 +60,11 @@ public class Rol {
 		this.nombre = nombre;
 	}
 
-	public List<Entidad> getEntidades() {
-		return entidades;
+	public List<Alumno> getAlumnos() {
+		return alumnos;
 	}
 
-	public void setEntidades(final List<Entidad> entidades) {
-		this.entidades = entidades;
+	public void setAlumnos(final List<Alumno> alumnos) {
+		this.alumnos = alumnos;
 	}
-
 }

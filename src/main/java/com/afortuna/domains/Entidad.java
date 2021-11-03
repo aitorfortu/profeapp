@@ -12,6 +12,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Entidad {
+
+	// Atributos
+	// ===========================================================================
+
 	@Column(insertable = false, updatable = false)
 	private String dtype;
 
@@ -39,32 +43,41 @@ public class Entidad {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Rol rol;
 
-	// CONSTRUCTORES
+	protected Float saldo;
 
 	@Column(name = "imagen")
 	private byte[] imagen;
+
+	// Constructores
+	// ===========================================================================
 
 	public Entidad() {
 
 	}
 
 	public Entidad(final String nombre, final String apellidos, final String email, final String contrasena,
-			final Rol rol) {
+			final Rol rol, final Float saldo) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.contrasena = contrasena;
 		this.rol = rol;
+		this.saldo = saldo;
 	}
 
-	public Entidad(final String nombre, final String apellidos, final String email, final String contrasena) {
+	public Entidad(final String nombre, final String apellidos, final String email, final String contrasena,
+			final Float saldo) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.contrasena = contrasena;
+		this.saldo = saldo;
 	}
+
+	// Getters y Setters
+	// ===========================================================================
 
 	public String getDtype() {
 		return dtype;
@@ -152,6 +165,10 @@ public class Entidad {
 
 	public void setImagen(final byte[] imagen) {
 		this.imagen = imagen;
+	}
+
+	public boolean isAdmin() {
+		return this.getRol() != null && this.getRol().getNombre().equals("Admin");
 	}
 
 }
